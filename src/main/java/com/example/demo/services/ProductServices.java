@@ -59,4 +59,17 @@ public class ProductServices
 		return null;
 	
 	}
+	public void delete(int id) {
+        Product product = productRepository.findById(id).orElse(null);
+        
+        if (product != null) {
+            productRepository.delete(product);
+        }
+    }
+	public void update(Product product, int id) {
+        if (productRepository.existsById(id)) {
+            product.setPid(id);
+            productRepository.save(product);
+        }
+    }
 }
